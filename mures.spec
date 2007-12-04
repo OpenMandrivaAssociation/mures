@@ -13,7 +13,7 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires:	SDL_image-devel
 BuildRequires:	SDL_net-devel
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
