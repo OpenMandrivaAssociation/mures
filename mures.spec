@@ -22,6 +22,7 @@ BuildRequires:	gcc
 BuildRequires:	libSDL_ttf-devel
 BuildRequires:	texinfo
 BuildRequires:	ImageMagick
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # Author: Adam D'Angelo <dangelo@ntplx.net>
 
 %description
