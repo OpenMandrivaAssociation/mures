@@ -71,17 +71,6 @@ convert -size 48x48 %{SOURCE1} %{buildroot}/%{_liconsdir}/%{name}.png
 convert -size 32x32 %{SOURCE1} %{buildroot}/%{_iconsdir}/%{name}.png
 convert -size 16x16 %{SOURCE1} %{buildroot}/%{_miconsdir}/%{name}.png
 
-install -d %{buildroot}/%{_menudir}
-cat << EOF > %{buildroot}/%{_menudir}/%{name}
-?package(%{name}): \
-command="%{_bindir}/%{name}" \
-icon="%{name}.png" \
-needs="x11" \
-section="More Applications/Games/Arcade" \
-title="Mures" \
-longtitle="%{Summary}"\
-xdg="true"
-EOF
 
 # XDG menu
 install -d %{buildroot}%{_datadir}/applications
@@ -112,7 +101,6 @@ rm -rf %{buildroot}
 %doc AUTHORS ChangeLog INSTALL README TODO
 %{_bindir}/*
 %{_libdir}/%{name}
-%{_menudir}/%{name}
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
