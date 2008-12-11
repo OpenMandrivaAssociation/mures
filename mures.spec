@@ -21,7 +21,7 @@ BuildRequires:	esound-devel
 BuildRequires:	gcc
 BuildRequires:	libSDL_ttf-devel
 BuildRequires:	texinfo
-BuildRequires:	ImageMagick
+BuildRequires:	imagemagick
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # Author: Adam D'Angelo <dangelo@ntplx.net>
 
