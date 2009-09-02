@@ -3,7 +3,7 @@
 Summary:	%{Summary}
 Name:		mures
 Version:	0.5
-Release:	%mkrel 10
+Release:	%mkrel 11
 License:	GPL
 Group:		Games/Arcade
 URL:		http://mures.sourceforge.net/
