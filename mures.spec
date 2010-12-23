@@ -13,13 +13,8 @@ Requires(post): desktop-file-utils
 Requires(postun): desktop-file-utils
 BuildRequires:	SDL_image-devel
 BuildRequires:	SDL_net-devel
-BuildRequires:	X11-devel
-BuildRequires:	alsa-lib-devel
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	esound-devel
-BuildRequires:	gcc
-BuildRequires:	libSDL_ttf-devel
+Buildrequires:	SDL_ttf-devel
+BuildRequires:	GL-devel
 BuildRequires:	texinfo
 BuildRequires:	imagemagick
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -41,13 +36,13 @@ arrows.
 %setup -q
 
 %build
-%configure
+%configure2_5x
 make
 
 %install
 rm -rf %{buildroot}
 
-%makeinstall
+%makeinstall_std
 
 mv %{buildroot}/%{_bindir}/%{name} %{buildroot}/%{_bindir}/%{name}.real
 cat << EOF > %{buildroot}/%{_bindir}/%{name}
@@ -82,7 +77,7 @@ Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Games-Arcade;Game;ArcadeGame;
+Categories=Game;ArcadeGame;
 EOF
 
 %if %mdkversion < 200900
