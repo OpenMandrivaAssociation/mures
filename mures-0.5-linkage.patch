@@ -1,0 +1,32 @@
+diff -urN mures-0.5/src/lua/Makefile.am mures-0.5-patched/src/lua/Makefile.am
+--- mures-0.5/src/lua/Makefile.am	2001-12-06 05:09:22.000000000 +1000
++++ mures-0.5-patched/src/lua/Makefile.am	2012-09-01 11:25:26.716854765 +1100
+@@ -41,4 +41,4 @@
+ lvm.c \
+ lvm.h \
+ lzio.c \
+-lzio.h \
++lzio.h
+diff -urN mures-0.5/src/Makefile.am mures-0.5-patched/src/Makefile.am
+--- mures-0.5/src/Makefile.am	2001-12-06 05:15:31.000000000 +1000
++++ mures-0.5-patched/src/Makefile.am	2012-09-01 11:49:15.960839598 +1100
+@@ -1,8 +1,8 @@
+ bin_PROGRAMS = mures
+ 
+ mures_LDADD = \
+-	-llua -L./lua
+-	$(STATIC_LIBS)
++	-llua -L./lua \
++	$(STATIC_LIBS) -lm
+ 
+ SUBDIRS = lua gui images maps sounds textures
+ 
+diff -urN mures-0.5/src/maps/battle/Makefile.am mures-0.5-patched/src/maps/battle/Makefile.am
+--- mures-0.5/src/maps/battle/Makefile.am	2001-12-06 05:17:14.000000000 +1000
++++ mures-0.5-patched/src/maps/battle/Makefile.am	2012-09-01 11:25:37.826854687 +1100
+@@ -26,4 +26,4 @@
+ turn.mus \
+ twirl.mus \
+ untitled.mus \
+-x.mus \
++x.mus

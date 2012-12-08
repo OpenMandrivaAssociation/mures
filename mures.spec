@@ -1,23 +1,20 @@
-%define Summary Clone of Sega's "Chu Chu Rocket", a multi-player puzzle game
-
-Summary:	%{Summary}
+Summary:	Clone of Sega's "Chu Chu Rocket", a multi-player puzzle game
 Name:		mures
 Version:	0.5
-Release:	%mkrel 15
+Release:	17
 License:	GPL
 Group:		Games/Arcade
 URL:		http://mures.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/mures/%{name}-%{version}.tar.bz2
 Source1:	%{name}-48.xpm
-Requires(post): desktop-file-utils
-Requires(postun): desktop-file-utils
-BuildRequires:	SDL_image-devel
+Patch0:		mures-0.5-linkage.patch
+BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	SDL_net-devel
-Buildrequires:	SDL_ttf-devel
-BuildRequires:	GL-devel
+BuildRequires:	SDL_ttf-devel
+BuildRequires:	pkgconfig(gl)
+BuildRequires:	pkgconfig(glu)
 BuildRequires:	texinfo
 BuildRequires:	imagemagick
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 # Author: Adam D'Angelo <dangelo@ntplx.net>
 
 %description
@@ -32,10 +29,11 @@ arrows.
 - Player 3: Use A,W,S,D to target and I,J,K,L to place arrows.
 
 %prep
-
 %setup -q
+%patch0 -p1
 
 %build
+autoreconf -fi
 %configure2_5x
 make
 
@@ -72,7 +70,7 @@ install -d %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=Mures
-Comment=%{Summary}
+Comment=Multi-player puzzle game
 Exec=%{_bindir}/%{name}
 Icon=%{name}
 Terminal=false
@@ -80,23 +78,7 @@ Type=Application
 Categories=Game;ArcadeGame;
 EOF
 
-%if %mdkversion < 200900
-%post
-%update_menus
-%update_desktop_database
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%clean_desktop_database
-%endif
-
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %doc AUTHORS ChangeLog INSTALL README TODO
 %{_bindir}/*
 %{_libdir}/%{name}
@@ -105,4 +87,70 @@ rm -rf %{buildroot}
 %{_liconsdir}/%{name}.png
 %{_datadir}/applications/mandriva-%{name}.desktop
 
+
+
+
+%changelog
+* Wed May 04 2011 Oden Eriksson <oeriksson@mandriva.com> 0.5-15mdv2011.0
++ Revision: 666500
+- mass rebuild
+
+* Sat Feb 05 2011 Funda Wang <fwang@mandriva.org> 0.5-14
++ Revision: 636321
+- rebuild
+- tighten BR
+
+* Fri Dec 03 2010 Oden Eriksson <oeriksson@mandriva.com> 0.5-13mdv2011.0
++ Revision: 606671
+- rebuild
+
+* Wed Mar 17 2010 Oden Eriksson <oeriksson@mandriva.com> 0.5-12mdv2010.1
++ Revision: 523404
+- rebuilt for 2010.1
+
+* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 0.5-11mdv2010.0
++ Revision: 426201
+- rebuild
+
+* Sat Mar 07 2009 Antoine Ginies <aginies@mandriva.com> 0.5-10mdv2009.1
++ Revision: 351613
+- rebuild
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - lowercase ImageMagick
+
+* Thu Jun 12 2008 Pixel <pixel@mandriva.com> 0.5-9mdv2009.0
++ Revision: 218425
+- rpm filetriggers deprecates update_menus/update_scrollkeeper/update_mime_database/update_icon_cache/update_desktop_database/post_install_gconf_schemas
+
+* Tue Jan 15 2008 Thierry Vignaud <tv@mandriva.org> 0.5-9mdv2008.1
++ Revision: 153272
+- rebuild
+- drop old menu
+- kill re-definition of %%buildroot on Pixel's request
+- buildrequires X11-devel instead of XFree86-devel
+- kill desktop-file-validate's 'warning: key "Encoding" in group "Desktop Entry" is deprecated'
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+
+* Mon Mar 19 2007 Oden Eriksson <oeriksson@mandriva.com> 0.5-7mdv2007.1
++ Revision: 146622
+- fix summary
+
+* Sun Mar 18 2007 Oden Eriksson <oeriksson@mandriva.com> 0.5-6mdv2007.1
++ Revision: 146181
+- Import mures
+
+* Sun Mar 18 2007 Oden Eriksson <oeriksson@mandriva.com> 0.5-6mdv2007.1
+- use the %%mrel macro
+- fix xdg menu
+- fix icons
+
+* Sun Jan 01 2006 Guillaume Cottenceau <gc@mandrakesoft.com> 0.5-5mdk
+- Rebuild
+
+* Mon Sep 06 2004 Michael Scherer <misc@mandrake.org> 0.5-4mdk
+- Rebuild
 
