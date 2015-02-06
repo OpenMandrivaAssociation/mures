@@ -1,7 +1,7 @@
 Summary:	Clone of Sega's "Chu Chu Rocket", a multi-player puzzle game
 Name:		mures
 Version:	0.5
-Release:	17
+Release:	18
 License:	GPL
 Group:		Games/Arcade
 URL:		http://mures.sourceforge.net/
