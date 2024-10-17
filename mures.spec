@@ -4,7 +4,7 @@ Version:	0.5
 Release:	18
 License:	GPL
 Group:		Games/Arcade
-URL:		http://mures.sourceforge.net/
+URL:		https://mures.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/mures/%{name}-%{version}.tar.bz2
 Source1:	%{name}-48.xpm
 Patch0:		mures-0.5-linkage.patch
