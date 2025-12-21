@@ -8,6 +8,11 @@ URL:		https://mures.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/mures/%{name}-%{version}.tar.bz2
 Source1:	%{name}-48.xpm
 Patch0:		mures-0.5-linkage.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(SDL_image)
 BuildRequires:	SDL_net-devel
 BuildRequires:	SDL_ttf-devel
